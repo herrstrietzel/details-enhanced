@@ -1,20 +1,13 @@
-
-body{
-font-size:2em;
-line-height:1.3em;
-}
-
-/* example styles */
 details {
   --transition-duration: 0.5s;
   --marker-icon: '\276F';
   --marker-scale: scale(1);
-  --marker-translate: translate(0, 0.05em);
+  --marker-translate: translate(0, 0);
   --marker-rounded-padding: 0.1em;
   --marker-rotation: rotate(0deg);
   --marker-icon-size: 1em;
   --marker-icon-color: inherit;
-  --marker-font-weight:400;
+  --marker-font-weight: 400;
   --summary-gap: 0.3em;
 }
 
@@ -23,12 +16,12 @@ summary {
 }
 
 /** 
-  * "Core style": expanding and collapsing 
-  * we need to wrap the detail's content twice
-  * 1. an outer wrap introducing a grid display context
-  * - specifying the transition speed from 0fr to 1fr
-  * 2. an inner content wrap with hidden overflow
-  **/
+    * "Core style": expanding and collapsing 
+    * we need to wrap the detail's content twice
+    * 1. an outer wrap introducing a grid display context
+    * - specifying the transition speed from 0fr to 1fr
+    * 2. an inner content wrap with hidden overflow
+    **/
 
 .details-content {
   display: grid;
@@ -48,39 +41,39 @@ summary {
 
 /* fully expanded - show overflow */
 .details-content-open>.details-content-inner {
-  overflow: visible; 
+  overflow: visible;
 }
 
 
 /* CSS normalization to avoid/mitigate layout shifts */
-.details-wrap summary{
+.details-wrap summary {
   padding-left: calc(1em + var(--summary-gap));
   list-style-type: none;
-  display:flex;
+  display: flex;
 
-  &:before{
+  &:before {
     content: var(--marker-icon);
     display: inline-block;
     text-align: center;
     width: 1em;
     margin-right: var(--summary-gap);
     margin-left: calc(-1em - var(--summary-gap));
-    transform-box:fill-box;
+    transform-box: fill-box;
     transform-origin: 50%;
     transition: transform var(--transition-duration);
   }
 }
 
-.details-wrap details[open]{
-  & > summary:before{
-    transform : rotate(90deg);
+.details-wrap details[open] {
+  &>summary:before {
+    transform: rotate(90deg);
   }
 }
 
 
 /**
-* hide default detail markers
-*/
+  * hide default detail markers
+  */
 summary.summary {
   padding-left: 0;
   list-style-type: none;
@@ -89,18 +82,18 @@ summary.summary {
   gap: var(--summary-gap);
   padding-left: 0;
   position: relative;
-    
+
   /* hide default summary marker replacements */
-  &:before{
-    content:'';
-    display:none;
+  &:before {
+    content: '';
+    display: none;
   }
 }
 
-.summary .summary-marker +*{
+.summary .summary-marker+* {
   display: inline-block;
-  margin-top:0;
-  margin-bottom:0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 
@@ -112,9 +105,9 @@ summary.summary {
 
 
 /**
-* marker animation
-* for expanded and closed state
-*/
+  * marker animation
+  * for expanded and closed state
+  */
 .summary-marker {
   display: inline-flex;
   color: var(--marker-icon-color);
@@ -152,7 +145,7 @@ summary.summary {
 
 /** Style: plus/minus style **/
 .summary-marker-plus {
-  --marker-font-weight:700;
+  --marker-font-weight: 700;
 }
 
 .summary-marker-plus.summary-marker-expanded {
@@ -169,10 +162,18 @@ summary.summary {
 }
 
 /** Style: custom icon: hide pseudo if svg icon is specified **/
-.summary-marker-icon *{
-  width:100%;
-  height:auto;
-  }
+
+.summary-marker-icon {
+  --marker-translate: translate(0, calc(0.5lh - 0.5em));
+}
+
+.summary-marker-icon * {
+  width: 100%;
+  height: auto;
+}
+
+
+
 
 /*  hide pseudo elements when custom icons are defined */
 .summary-marker-icon::before {
@@ -180,18 +181,22 @@ summary.summary {
 }
 
 /** round marker style **/
+
 .summary-marker-round {
-  --marker-translate: translate(calc(var(--marker-rounded-padding) * -1), 0);
+  --marker-translate: translate(0, calc(0.5lh - 0.5em));
   background-color: currentcolor;
   border-radius: 50%;
   display: flex;
   align-items: center;
   width: 1em;
-  aspect-ratio: 1;
-  //height: 1em;
-  line-height:0;
+  height: 1em;
   padding: var(--marker-rounded-padding);
 }
+
+.summary-marker.summary-marker-round.summary-marker-right {
+  --marker-translate: translate(calc(var(--marker-rounded-padding) * -1), calc(0.5lh - 0.5em));
+}
+
 
 .summary-marker-icon-inner,
 .summary-marker-round::before,
@@ -201,11 +206,10 @@ summary.summary {
 
 
 /** right alignment: 
-* flip marker via scale() 
-*/
+  * flip marker via scale() 
+  */
 .summary-marker-right {
   --marker-scale: scale(-1, 1);
   order: 1;
   margin-left: auto;
 }
-
