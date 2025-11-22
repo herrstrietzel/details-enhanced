@@ -55,6 +55,7 @@ export function enhanceDetails(options = {}) {
     let groupIndex=-1;
 
 
+    
     for(let i=0, l=details.length; l&&i<l; i++ ){
 
         let detail = details[i];
