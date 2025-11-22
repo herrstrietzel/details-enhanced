@@ -1,0 +1,291 @@
+@charset "UTF-8";
+details {
+  --transition-duration: 0.3s;
+  --marker-icon: "❯";
+  --marker-scale: scale(1);
+  --marker-translate: translate(0, 0.1em);
+  --marker-rounded-padding: 0.1em;
+  --marker-rotation: rotate(0deg);
+  --marker-indent: 1em;
+  --marker-icon-size: 1em;
+  --marker-icon-color: inherit;
+  --marker-font-weight: 400;
+  --summary-gap: 0.15em;
+  --color-details-tree: #ccc;
+  --icn-stroke-width: 3px;
+  --stroke-linecap: round;
+  --stroke-linejoin: round;
+  --icn-color: var(--color-focus, currentcolor);
+}
+
+/* nested */
+details p {
+  margin: 0;
+}
+
+.details .details {
+  padding-left: 1em;
+}
+
+summary {
+  cursor: pointer;
+}
+
+/** 
+* "Core style": expanding and collapsing 
+* we need to wrap the detail's content twice
+* 1. an outer wrap introducing a grid display context
+* - specifying the transition speed from 0fr to 1fr
+* 2. an inner content wrap with hidden overflow
+**/
+.details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-duration);
+}
+
+.details-content-inner {
+  overflow: hidden;
+}
+
+.details-content-expanded {
+  grid-template-rows: 1fr;
+}
+
+/* fully expanded - show overflow */
+.details-content-open > .details-content-inner {
+  overflow: visible;
+}
+
+/* CSS normalization to avoid/mitigate layout shifts */
+.details-wrap summary {
+  padding-left: calc(1em + var(--summary-gap));
+  list-style-type: none;
+  display: flex;
+}
+.details-wrap summary:before {
+  content: var(--marker-icon);
+  display: inline-block;
+  text-align: center;
+  width: var(--marker-indent);
+  margin-right: var(--summary-gap);
+  margin-left: calc(var(--marker-indent) - var(--summary-gap));
+  transform-box: fill-box;
+  transform-origin: 50%;
+  transition: transform var(--transition-duration);
+}
+
+.details-wrap details[open] > summary:before {
+  transform: rotate(90deg);
+}
+
+/* reset */
+.details-wrap.details-ignore summary,
+.details-ignore summary {
+  padding-left: 0;
+  align-items: flex-start !important;
+}
+.details-wrap.details-ignore summary:before,
+.details-ignore summary:before {
+  margin-left: 0 !important;
+}
+
+/**
+  * hide default detail markers
+  */
+summary.summary {
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  align-items: flex-start;
+  /* align-items: center;*/
+  gap: var(--summary-gap);
+  padding-left: 0;
+  position: relative;
+  /* hide default summary marker replacements */
+}
+summary.summary:before {
+  content: "";
+  display: none;
+}
+
+.summary .summary-marker + * {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.summary::marker,
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+/**
+  * marker animation
+  * for expanded and closed state
+  */
+.summary-marker {
+  --marker-scale: scale(0.8);
+  display: inline-flex;
+  color: var(--marker-icon-color);
+  transition: var(--transition-duration) transform;
+  font-size: var(--marker-icon-size);
+  line-height: inherit;
+  margin-bottom: 0;
+  text-align: center;
+  justify-content: center;
+  width: var(--marker-indent);
+  transform: var(--marker-translate) var(--marker-scale) var(--marker-rotation);
+  transform-origin: center;
+  transform-box: fill-box;
+  flex: 0 0 auto;
+  font-weight: var(--marker-font-weight);
+  box-sizing: border-box;
+}
+.summary-marker .icn-svg {
+  fill: none;
+  stroke-width: var(--icn-stroke-width, 2px);
+  stroke: var(--icn-color, currentcolor);
+  stroke-linecap: var(--stroke-linecap, round);
+  stroke-linejoin: var(stroke-linejoin, round);
+}
+.summary-marker .icn-svg path {
+  vector-effect: non-scaling-stroke;
+}
+
+.icn-bold {
+  --icn-stroke-width: 4px;
+}
+
+.icn-rect {
+  --stroke-linecap: butt;
+  --stroke-linejoin: butt;
+}
+
+/** define marker icon/symbol: chevron by default **/
+.summary-marker:before {
+  content: var(--marker-icon);
+  display: inline-block;
+  line-height: 1.2;
+}
+
+/** expanded animation **/
+.summary-marker-expanded {
+  --marker-rotation: rotate(90deg);
+}
+
+/** Style: plus/minus style **/
+.summary-marker-expanded .path1 {
+  display: none;
+}
+
+/*
+.summary-marker-plus {
+    --marker-font-weight: 700;
+    --marker-scale: scale(1.2);
+}
+
+.summary-marker-plus.summary-marker-expanded {
+    --marker-rotation: rotate(180deg);
+}
+
+.summary-marker-plus::before {
+    content: '+';
+}
+
+.summary-marker-expanded.summary-marker-plus::before {
+    content: '\2212';
+}
+*/
+/** Style: custom icon: hide pseudo if svg icon is specified **/
+.summary-marker-icon {
+  --marker-translate: translate(0, calc(0.5lh - 0.45em));
+  --marker-scale: scale(1);
+}
+
+.summary-marker-icon * {
+  width: 100%;
+  height: auto;
+}
+
+/*  hide pseudo elements when custom icons are defined */
+.summary-marker-icon::before {
+  display: none;
+}
+
+/** round marker style **/
+.summary-marker-round {
+  --marker-scale: scale(0.8);
+  background-color: currentcolor;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  width: var(--marker-icon-size);
+  height: var(--marker-icon-size);
+  padding: var(--marker-rounded-padding);
+  /*
+  &.summary-marker-plus{
+  }
+  */
+}
+
+.summary-marker.summary-marker-round.summary-marker-right {
+  --marker-translate: translate(calc(var(--marker-rounded-padding) * -1), calc(0.5lh - 0.5em));
+}
+
+.summary-marker-icon-inner,
+.summary-marker-round::before,
+.summary-marker-round * {
+  color: #fff;
+}
+
+/** right alignment: 
+  * flip marker via scale() 
+  */
+.summary-marker-right {
+  --marker-scale: scale(-1, 1);
+  order: 1;
+  margin-left: auto;
+}
+
+/** tree style */
+.details-type-tree {
+  /*
+  .summary-marker {
+      background-color: #fff;
+      border-radius: 50%;
+  }
+  */
+  /*
+  details+details {
+      clip-path: inset(-2em 0 0em 0);
+  }
+  details,
+  .details-content {
+      overflow: visible !important;
+  }
+  */
+}
+.details-type-tree details {
+  position: relative;
+  /* clip-path: inset(0 0 0 0); */
+}
+.details-type-tree.details:open:before,
+.details-type-tree .details:open:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0.4em;
+  top: 0.5lh;
+  bottom: 0;
+  width: 0px;
+  border-left: 4px solid var(--color-details-tree, #ccc);
+  clip-path: inset(0.75em 0 0em 0);
+}
+.details-type-tree .details:open .details-content {
+  padding-left: calc(var(--marker-indent) + var(--summary-gap));
+}
+.details-type-tree .details .details {
+  padding-left: 0;
+  overflow: hidden;
+}/*# sourceMappingURL=details-enhanced.css.map */

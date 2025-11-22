@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="../dist/details-enhanced.css">
+    <script src="../dist/details-enhanced.js" defer></script>
+
+    <title>Enhance details</title>
+
+    <style>
+        /*
+        */
+
+        body {
+            font-size:5vw;
+            font-size:16px;
+        }
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <main class="details-wrap details-enhanced 
+    ---details-chevron 
+    details-icon-plus 
+    details-round 
+    details-type-accordion"
+        data-data-details='{"round":false, "right":false, "icon":"", "type":""}'>
+
+
+        <p><button data-details="sum1">open details1</button></p>
+        <p><button data-details="" data-details-toggle="expand">Expand all</button></p>
+        <p><button data-details="" data-details-toggle="collapse">Collapse all</button></p>
+        <p><button data-details="" data-details-toggle="">Toggle all</button></p>
+
+        <details open>
+            <summary id="sum1"> Summary 1 </summary>
+            <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The path
+                data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                instructions.</p>
+        </details>
+
+        <details  data-details='{"round":true, "right":false, "icon":"chevron"}'>
+            <summary> Summary 2 - A path is defined by including a</summary>
+            <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The path
+                data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                instructions.</p>
+        </details>
+
+
+
+        <details  data-details='{"round":true, "right":false, "icon":"arrow-right"}'>
+            <summary> Summary 2 - A path is defined by including a</summary>
+            <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The path
+                data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                instructions.</p>
+        </details>
+
+        <details  --data-details='{"round":false, "right":false, "icon":"arrow-right"}'>
+            <summary> Summary 3</summary>
+            <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The path
+                data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                instructions.</p>
+        </details>
+
+
+
+
+        <!-- 
+
+
+
+
+                -->
+
+
+
+
+
+    </main>
+
+
+
+</body>
+
+</html>

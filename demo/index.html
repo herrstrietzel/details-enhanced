@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="../dist/details-enhanced.css">
+    <script src="../dist/details-enhanced.js" defer></script>
+
+    <title>Enhance details</title>
+
+    <style>
+        /*
+        */
+
+        body {
+            font-size: 5vw;
+            font-size: 16px;
+
+            font-family: "Segoe UI", sans-serif;
+            font-size: 2em;
+            line-height: 1.4em;
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <main>
+
+
+        <p><button data-details="sum1">open details1</button>
+            <button data-details="" data-details-toggle="expand">Expand all</button>
+            <button data-details="" data-details-toggle="collapse">Collapse all</button>
+            <button data-details="" data-details-toggle="">Toggle all</button>
+        </p>
+
+        <!--
+        -->
+        <article class="details-wrap details-enhanced details-ignore">
+
+            <h3>Init by CSS</h3>
+            <details open>
+                <summary id="sum1"> Summary 1 </summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+            <details>
+                <summary class="--summary-plus" data-summary='{"round":true, "right":false, "icon":"plus"}'>
+                    Summary 2 - <br>Multiline summary text</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+            <details>
+                <summary class="--summary-plus" data-summary='{"round":true, "right":true, "icon":"plus"}'>
+                    Summary 2 - <br>Multiline summary text</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+            <details>
+                <summary> Summary 3</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+            <details>
+                <summary class="details-enhanced --summary-icon-chevron"> Summary 3</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+
+            <details>
+                <summary class="details-enhanced summary-icon-arrow"> Summary 3</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+        </article>
+
+        <article class="details-type-accordion">
+
+            <h3>Accordion</h3>
+
+            <details open>
+                <summary id="sum1"> Summary 1 </summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+            <details data-details='{"round":true, "right":false, "icon":"chevron"}'>
+                <summary> Summary 2 - A path is defined by including a</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+
+            <details data-details='{"round":true, "right":false, "icon":"arrow"}'>
+                <summary> Summary 2 - A path is defined by including a</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+            <details data-details='{"round":false, "right":true, "icon":"plus"}'>
+                <summary> Summary 3</summary>
+                <p>A path is defined by including a ‘path’ element on which the d property specifies the path data. The
+                    path
+                    data contains the moveto, lineto, curveto (both cubic and quadratic Béziers), arc and closepath
+                    instructions.</p>
+            </details>
+
+
+        </article>
+
+
+
+        <article class="details-enhanced details-plus details-type-tree">
+            <h3>Tree style – nested</h3>
+            <details>
+                <summary>Folder 1</summary>
+                <p>Folder 1 content</p>
+
+                <details>
+                    <summary>Subfolder 1.1</summary>
+                    <p>Subfolder 1.1 content</p>
+                </details>
+
+                <details>
+                    <summary>Subfolder 1.2</summary>
+                    <p>Subfolder 1.2 content</p>
+
+                    <details>
+                        <summary>Subfolder 1.2.1</summary>
+                        <p>Subfolder 1.2.1 content</p>
+                    </details>
+
+                    <details>
+                        <summary>Subfolder 1.2.2</summary>
+                        <p>Subfolder 1.2.2 content</p>
+                    </details>
+
+                </details>
+
+            </details>
+
+            <details>
+                <summary>Folder 2</summary>
+                <p>Folder 2 content</p>
+            </details>
+
+            <details>
+                <summary>Folder 3</summary>
+                <p>Folder 3 content</p>
+            </details>
+
+        </article>
+
+
+        <article class="details-ignore">
+
+            <h3>Ignore – keep default</h3>
+
+            <details>
+                <summary>Folder 2</summary>
+                <p>Folder 2 content</p>
+            </details>
+
+            <details>
+                <summary>Folder 3</summary>
+                <p>Folder 3 content</p>
+            </details>
+
+
+        </article>
+
+
+
+
+
+    </main>
+
+
+
+</body>
+
+</html>

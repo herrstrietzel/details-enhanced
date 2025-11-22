@@ -1,0 +1,40 @@
+{
+  "name": "details-enhanced",
+  "version": "0.1.1",
+  "description": "Enhance default HTML details elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrstrietzel/details-enhanced.git"
+  },
+  "keywords": [],
+  "author": "herrstrietzel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/herrstrietzel/details-enhanced/issues"
+  },
+  "homepage": "https://github.com/herrstrietzel/details-enhanced#readme",
+  "main": "./dist/details-enhanced.js",
+  "module": "./dist/details-enhanced.esm.js",
+  "browser": "./dist/details-enhanced.js",
+  "exports": {
+    ".": {
+      "import": "./dist/details-enhanced.esm.js"
+    },
+    "./dist/details-enhanced.esm.js": "./dist/details-enhanced.esm.js",
+    "./dist/details-enhanced.js": "./dist/details-enhanced.js",
+    "./dist/details-enhanced.min.js": "./dist/details-enhanced.min.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c --watch",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^3.29.5"
+  },
+  "dependencies": {
+    "terser": "^5.39.0"
+  }
+}
